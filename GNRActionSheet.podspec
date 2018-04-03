@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'GNRActionSheet'
   s.version          = '1.0'
-  s.summary          = '一个简洁优雅的选项弹层！'
+  s.summary          = '一个轻量级、简洁优雅的选项弹层！'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
