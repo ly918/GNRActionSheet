@@ -1,0 +1,6 @@
+framework module GNRActionSheet {
+  umbrella header "GNRActionSheet-umbrella.h"
+
+  export *
+  module * { export * }
+}
