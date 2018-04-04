@@ -29,6 +29,9 @@
 @end
 
 @implementation GNRActionSheet
+- (void)dealloc{
+    NSLog(@"GNRActionSheet Dealloc!");
+}
 
 - (instancetype)initWithActionTitles:(NSArray *)actionTitles
                          cancelTitle:(NSString *)cancelTitle
@@ -46,15 +49,15 @@
 }
 
 + (instancetype)actionTitles:(NSArray *)actionTitles
-                         actionBlock:(GNRActionSheetActionBlock)actionBlock
-                         cancelBlock:(GNRActionSheetCancelBlock)cancelBlock{
+                 actionBlock:(GNRActionSheetActionBlock)actionBlock
+                 cancelBlock:(GNRActionSheetCancelBlock)cancelBlock{
     return [GNRActionSheet actionTitles:actionTitles cancelTitle:nil actionBlock:actionBlock cancelBlock:cancelBlock];
 }
 
 + (instancetype)actionTitles:(NSArray *)actionTitles
-                         cancelTitle:(NSString *)cancelTitle
-                         actionBlock:(GNRActionSheetActionBlock)actionBlock
-                         cancelBlock:(GNRActionSheetCancelBlock)cancelBlock{
+                 cancelTitle:(NSString *)cancelTitle
+                 actionBlock:(GNRActionSheetActionBlock)actionBlock
+                 cancelBlock:(GNRActionSheetCancelBlock)cancelBlock{
     GNRActionSheet *sheet = [[GNRActionSheet alloc]initWithActionTitles:actionTitles cancelTitle:cancelTitle actionBlock:actionBlock cancelBlock:cancelBlock];
     return sheet;
 }
@@ -94,7 +97,7 @@
 }
 
 - (void)dismiss{
-    [self dismissAnimation];
+    [self dismissAnimationCompletion:nil];
 }
 
 - (void)showAnimation{
@@ -109,7 +112,7 @@
     }];
 }
 
-- (void)dismissAnimation{
+- (void)dismissAnimationCompletion:(void (^)(void))completion{
     [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(@(self.totalHeight));
     }];
@@ -117,15 +120,16 @@
         self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:completion];
     }];
 }
 
 - (void)backgroundTapPressed:(id)sender{
-    if (_cancelBlock) {
-        _cancelBlock(self);
-    }
-    [self dismissAnimation];
+    [self dismissAnimationCompletion:^{
+        if (self.cancelBlock) {
+            self.cancelBlock(self);
+        }
+    }];
 }
 
 //MARK: - Delegate
@@ -163,16 +167,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section==0) {
-        if (_actionBlock) {
-            _actionBlock(self,indexPath.row);
+    [self dismissAnimationCompletion:^{
+        if (indexPath.section==0) {
+            if (self.actionBlock) {
+                self.actionBlock(self,indexPath.row);
+            }
+        } else {
+            if (self.cancelBlock) {
+                self.cancelBlock(self);
+            }
         }
-    } else {
-        if (_cancelBlock) {
-            _cancelBlock(self);
-        }
-    }
-    [self dismissAnimation];
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
