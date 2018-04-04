@@ -9,10 +9,6 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## ScreenShots
-
-<p><img alt="" src="https://github.com/ly918/GNRActionSheet/blob/master/screenshots/shot_x.jpg?raw=true" /></p>
-
 ## Installation
 
 GNRActionSheet is available through [CocoaPods](http://cocoapods.org). To install
@@ -21,10 +17,13 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'GNRActionSheet'
 ```
+## ScreenShots
+
+<p><img alt="" src="https://github.com/ly918/GNRActionSheet/blob/master/screenshots/shot_x.jpg?raw=true" /></p>
 
 ## Author
 
-ly918@qq.com, ly918@qq.com
+GNR, ly918@qq.com
 
 ## License
 
