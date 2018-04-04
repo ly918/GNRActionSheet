@@ -22,7 +22,7 @@ TODO: Add long description of the pod here.
                        DESC
 
   s.homepage         = 'https://github.com/ly918/GNRActionSheet'
-  s.screenshots     = 'https://github.com/ly918/GNRActionSheet/blob/master/screenshots/shot_x?raw=true'
+  s.screenshots     = 'https://github.com/ly918/GNRActionSheet/blob/master/screenshots/shot_x.jpg?raw=true'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ly918@qq.com' => 'ly918@qq.com' }
   s.source           = { :git => 'https://github.com/ly918/GNRActionSheet.git', :tag => s.version.to_s }
