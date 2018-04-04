@@ -11,6 +11,9 @@
 #endif
 
 #import "GNRActionSheet.h"
+#import "GNRActionSheetCell.h"
+#import "GNRActionSheetConfig.h"
+#import "UIView+GNRSafeArea.h"
 
 FOUNDATION_EXPORT double GNRActionSheetVersionNumber;
 FOUNDATION_EXPORT const unsigned char GNRActionSheetVersionString[];

@@ -4,7 +4,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - GNRActionSheet (1.0):
+  - GNRActionSheet (1.1):
     - Masonry
   - Masonry (1.1.0)
 
@@ -12,15 +12,20 @@ DEPENDENCIES:
   - FBSnapshotTestCase
   - GNRActionSheet (from `../`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - FBSnapshotTestCase
+    - Masonry
+
 EXTERNAL SOURCES:
   GNRActionSheet:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  GNRActionSheet: 7cb333b02dec0d766a9574ec02cfce139ec77434
+  GNRActionSheet: 2e43c265251e7e9204e2306fe73a9fa6f3279fcc
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: 937817f1bd419c1ada857376a72d91ac264c5f16
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0.beta.1

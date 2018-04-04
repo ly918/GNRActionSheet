@@ -1,9 +1,10 @@
 {
   "name": "GNRActionSheet",
-  "version": "1.0",
-  "summary": "一个简洁优雅的选项弹层！",
+  "version": "1.1",
+  "summary": "一个简洁优雅的轻量级选项弹窗！",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/ly918@qq.com/GNRActionSheet",
+  "homepage": "https://github.com/ly918/GNRActionSheet",
+  "screenshots": "https://github.com/ly918/GNRActionSheet/blob/master/screenshots/shot_x?raw=true",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +13,8 @@
     "ly918@qq.com": "ly918@qq.com"
   },
   "source": {
-    "git": "https://github.com/ly918@qq.com/GNRActionSheet.git",
-    "tag": "1.0"
+    "git": "https://github.com/ly918/GNRActionSheet.git",
+    "tag": "1.1"
   },
   "platforms": {
     "ios": "8.0"
