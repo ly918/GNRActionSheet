@@ -17,8 +17,7 @@
 - (UIVisualEffectView *)blurView{
     if (!_blurView) {
         _blurView = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        _blurView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
-        
+        _blurView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
     }
     return _blurView;
 }
@@ -39,20 +38,20 @@
         
         [self.contentView addSubview:_titleL];
         [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.top.left.right.equalTo(self);
+            make.height.equalTo(@(50.f));
         }];
     }
     return _titleL;
 }
 
-- (void)setTitle:(NSString *)title{
-    _title = title;
-    self.titleL.text = title;
-}
-
-- (void)setIsCancel:(BOOL)isCancel{
-    _isCancel = isCancel;
-    self.titleL.textColor = isCancel?[UIColor colorWithRed:113/255.f green:144/255.f blue:249/255.f alpha:1]:[UIColor colorWithRed:51/255.f green:51/255.f blue:51/255.f alpha:1];
+- (void)setData:(NSDictionary *)data{
+    _data = data;
+    self.titleL.text = data[@"text"];
+    self.titleL.textColor = data[@"color"];
+    [self.titleL mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(data[@"height"]);
+    }];
 }
 
 - (void)awakeFromNib {

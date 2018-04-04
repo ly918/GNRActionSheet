@@ -44,6 +44,14 @@
 		81723D222073847000A25172 /* GNRActionSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81723D202073847000A25172 /* GNRActionSheetCell.m */; };
 		81723D232073847000A25172 /* GNRActionSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81723D202073847000A25172 /* GNRActionSheetCell.m */; };
 		81723D252073847000A25172 /* GNRActionSheetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 81723D212073847000A25172 /* GNRActionSheetCell.h */; };
+		81723D3A2074742D00A25172 /* UIView+GNRSafeArea.h in Headers */ = {isa = PBXBuildFile; fileRef = 81723D382074742D00A25172 /* UIView+GNRSafeArea.h */; };
+		81723D3B2074742D00A25172 /* UIView+GNRSafeArea.h in Headers */ = {isa = PBXBuildFile; fileRef = 81723D382074742D00A25172 /* UIView+GNRSafeArea.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81723D3C2074742D00A25172 /* UIView+GNRSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 81723D392074742D00A25172 /* UIView+GNRSafeArea.m */; };
+		81723D3D2074742D00A25172 /* UIView+GNRSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 81723D392074742D00A25172 /* UIView+GNRSafeArea.m */; };
+		81723D40207475C900A25172 /* GNRActionSheetConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 81723D3E207475C900A25172 /* GNRActionSheetConfig.h */; };
+		81723D41207475C900A25172 /* GNRActionSheetConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 81723D3E207475C900A25172 /* GNRActionSheetConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81723D42207475C900A25172 /* GNRActionSheetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 81723D3F207475C900A25172 /* GNRActionSheetConfig.m */; };
+		81723D43207475C900A25172 /* GNRActionSheetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 81723D3F207475C900A25172 /* GNRActionSheetConfig.m */; };
 		841FF232C33C7D49C58CEFDBE7EEB92B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC14588B41888766DEB71ADEE3FB27FC /* UIKit.framework */; };
 		91D0138ACFAD733E4061F12E450C336C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D1932E9DF9130AF0C63D105EAFB8EF /* Foundation.framework */; };
 		9673CF780F48C8E4EC2A331717B1F67C /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 37FF2C300CA9769A0051290C8EFBAEF9 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -155,6 +163,10 @@
 		803E2D76AED283C4306582A41C0A32D9 /* GNRActionSheet.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GNRActionSheet.modulemap; sourceTree = "<group>"; };
 		81723D202073847000A25172 /* GNRActionSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GNRActionSheetCell.m; path = GNRActionSheet/Classes/GNRActionSheetCell.m; sourceTree = "<group>"; };
 		81723D212073847000A25172 /* GNRActionSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GNRActionSheetCell.h; path = GNRActionSheet/Classes/GNRActionSheetCell.h; sourceTree = "<group>"; };
+		81723D382074742D00A25172 /* UIView+GNRSafeArea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+GNRSafeArea.h"; sourceTree = "<group>"; };
+		81723D392074742D00A25172 /* UIView+GNRSafeArea.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+GNRSafeArea.m"; sourceTree = "<group>"; };
+		81723D3E207475C900A25172 /* GNRActionSheetConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNRActionSheetConfig.h; sourceTree = "<group>"; };
+		81723D3F207475C900A25172 /* GNRActionSheetConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNRActionSheetConfig.m; sourceTree = "<group>"; };
 		85B39E7E48D52F1E5B325261726E41B0 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
 		85F12D12D86745894C29B4B792C816B6 /* GNRActionSheet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GNRActionSheet-dummy.m"; sourceTree = "<group>"; };
 		8894C39544186A76133E00423E599B72 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
@@ -368,6 +380,10 @@
 				23BDC69B6E04AD31502A4F847BB63CDD /* GNRActionSheet.m */,
 				81723D212073847000A25172 /* GNRActionSheetCell.h */,
 				81723D202073847000A25172 /* GNRActionSheetCell.m */,
+				81723D3E207475C900A25172 /* GNRActionSheetConfig.h */,
+				81723D3F207475C900A25172 /* GNRActionSheetConfig.m */,
+				81723D382074742D00A25172 /* UIView+GNRSafeArea.h */,
+				81723D392074742D00A25172 /* UIView+GNRSafeArea.m */,
 				F2206F387DE101738A5E334FE730EDC1 /* Pod */,
 				ECF1A873A1AA63520C6E9BE718AA207B /* Support Files */,
 			);
@@ -529,8 +545,10 @@
 			files = (
 				B758FB09FE2C06C1B8E36A71A9D76D41 /* FBSnapshotTestCase-umbrella.h in Headers */,
 				9673CF780F48C8E4EC2A331717B1F67C /* FBSnapshotTestCase.h in Headers */,
+				81723D40207475C900A25172 /* GNRActionSheetConfig.h in Headers */,
 				BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */,
 				2F485B69F51E4F723A38410F31F08550 /* FBSnapshotTestController.h in Headers */,
+				81723D3A2074742D00A25172 /* UIView+GNRSafeArea.h in Headers */,
 				BC952FC04FC963C1294DCD619C9B6B3B /* UIApplication+StrictKeyWindow.h in Headers */,
 				CAFA5E486BCE117A7D8C0FBF9DA6666B /* UIImage+Compare.h in Headers */,
 				051A816D6DD0CAE13496DDCFE0829167 /* UIImage+Diff.h in Headers */,
@@ -558,7 +576,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81723D3B2074742D00A25172 /* UIView+GNRSafeArea.h in Headers */,
 				514C623552D402609523F781255FB6EC /* GNRActionSheet-umbrella.h in Headers */,
+				81723D41207475C900A25172 /* GNRActionSheetConfig.h in Headers */,
 				81723D252073847000A25172 /* GNRActionSheetCell.h in Headers */,
 				E6D5A38D4E3D1E752B7A16168E5C93ED /* GNRActionSheet.h in Headers */,
 			);
@@ -699,7 +719,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81723D3D2074742D00A25172 /* UIView+GNRSafeArea.m in Sources */,
 				C240582221C5E5B4D9B50783643C0D52 /* GNRActionSheet-dummy.m in Sources */,
+				81723D43207475C900A25172 /* GNRActionSheetConfig.m in Sources */,
 				5984C558D65E6BC31A5CD4D05B07A933 /* GNRActionSheet.m in Sources */,
 				81723D232073847000A25172 /* GNRActionSheetCell.m in Sources */,
 			);
@@ -740,7 +762,9 @@
 				DB7A106243AC974FC7EBEB00B506C786 /* FBSnapshotTestCasePlatform.m in Sources */,
 				A4F69F3477A935285620AC3031C5C848 /* FBSnapshotTestController.m in Sources */,
 				1AB7934C16CE49DE196FFC7BE7278287 /* SwiftSupport.swift in Sources */,
+				81723D42207475C900A25172 /* GNRActionSheetConfig.m in Sources */,
 				094973D2D2F1E3B2E772F93C8147C6B9 /* UIApplication+StrictKeyWindow.m in Sources */,
+				81723D3C2074742D00A25172 /* UIView+GNRSafeArea.m in Sources */,
 				69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */,
 				35DD05FD595A6FE7F5A0692D12E319DC /* UIImage+Diff.m in Sources */,
 				756564ABAF2892FE7140C92A1CDDCF65 /* UIImage+Snapshot.m in Sources */,

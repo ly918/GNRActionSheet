@@ -9,7 +9,6 @@
 
 @interface GNRActionSheetCell : UITableViewCell
 
-@property (nonatomic, assign)BOOL isCancel;
-@property (nonatomic, strong)NSString *title;
+@property (nonatomic, strong)NSDictionary *data;
 
 @end

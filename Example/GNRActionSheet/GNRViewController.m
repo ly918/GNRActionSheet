@@ -33,10 +33,11 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     GNRActionSheet *sheet = [GNRActionSheet actionTitles:@[@"男",@"女"] cancelTitle:@"取消" actionBlock:^(GNRActionSheet *actionSheet, NSInteger index) {
-        
+        NSLog(@"index %d",index);
     } cancelBlock:^(GNRActionSheet *actionSheet) {
-        
+        NSLog(@"cancel");
     }];
+    sheet.config.cancelTitleColor = [UIColor redColor];
     [sheet showInViewController:self];
 }
 

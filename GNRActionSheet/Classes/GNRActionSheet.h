@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GNRActionSheet/GNRActionSheetConfig.h>
 
 @class GNRActionSheet;
 
@@ -13,6 +14,8 @@ typedef void(^GNRActionSheetActionBlock)(GNRActionSheet *actionSheet,NSInteger i
 typedef void(^GNRActionSheetCancelBlock)(GNRActionSheet *actionSheet);
 
 @interface GNRActionSheet : UIViewController
+
+@property(nonatomic, strong, readwrite)GNRActionSheetConfig *config;
 
 + (instancetype)actionTitles:(NSArray *)actionTitles
                          actionBlock:(GNRActionSheetActionBlock)actionBlock
