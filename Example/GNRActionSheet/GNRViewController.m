@@ -20,7 +20,7 @@
     [super viewDidLoad];
     UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg"]];
     imageV.frame = self.view.bounds;
-    imageV.contentMode = UIViewContentModeBottom;
+    imageV.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:imageV];
 	// Do any additional setup after loading the view, typically from a nib.
 }
