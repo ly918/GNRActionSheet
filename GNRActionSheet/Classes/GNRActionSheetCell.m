@@ -8,19 +8,10 @@
 #import "GNRActionSheetCell.h"
 #import <Masonry/Masonry.h>
 @interface GNRActionSheetCell()
-@property (nonatomic, strong)UIVisualEffectView *blurView;
 @property (nonatomic, strong)UILabel *titleL;
 @end
 
 @implementation GNRActionSheetCell
-
-- (UIVisualEffectView *)blurView{
-    if (!_blurView) {
-        _blurView = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        _blurView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
-    }
-    return _blurView;
-}
 
 - (UILabel *)titleL{
     if (!_titleL) {
@@ -28,13 +19,8 @@
         _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.font = [UIFont systemFontOfSize:17];
         
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
         self.contentView.backgroundColor = [UIColor clearColor];
-        
-        [self.contentView addSubview:self.blurView];
-        [_blurView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
         
         [self.contentView addSubview:_titleL];
         [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {

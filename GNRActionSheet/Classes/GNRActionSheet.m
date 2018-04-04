@@ -18,6 +18,7 @@
 
 @property (nonatomic,strong)UIButton *tapBtn;
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic, strong)UIVisualEffectView *blurView;
 @property (nonatomic,strong)NSMutableArray *actionTitles;
 @property (nonatomic,strong)NSString *cancelTitle;
 
@@ -76,12 +77,18 @@
 
 - (void)installUI{
     _totalHeight = (self.config.rowHeight*(self.actionTitles.count+1))+(self.actionTitles.count?self.config.sectionHeight:0.f)+[UIView g_safeBottomMargin];
-    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.tapBtn.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    self.tableView.backgroundView = self.blurView;
+
     [self.view addSubview:self.tapBtn];
-    [self.tapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
     [self.view addSubview:self.tableView];
+    
+    [self.tapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(self.view);
+        make.bottom.equalTo(self.tableView.mas_top);
+    }];
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(self.totalHeight));
         make.left.right.equalTo(@0);
@@ -105,7 +112,7 @@
         make.bottom.equalTo(@0);
     }];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        self.tapBtn.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         
@@ -117,7 +124,7 @@
         make.bottom.equalTo(@(self.totalHeight));
     }];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        self.tapBtn.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self dismissViewControllerAnimated:NO completion:completion];
@@ -157,16 +164,15 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section==0 && self.actionTitles.count) {//灰色条
-        UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        effectView.backgroundColor = [UIColor colorWithRed:246/255.f green:246/255.f blue:246/255.f alpha:0.7];
-        effectView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), self.config.sectionHeight);
-        return effectView;
+        UIView *darkView = [[UIView alloc]init];
+        darkView.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), self.config.sectionHeight);
+        return darkView;
     }
     return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self dismissAnimationCompletion:^{
         if (indexPath.section==0) {
             if (self.actionBlock) {
@@ -217,6 +223,13 @@
         [_tapBtn addTarget:self action:@selector(backgroundTapPressed:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _tapBtn;
+}
+
+- (UIVisualEffectView *)blurView{
+    if (!_blurView) {
+        _blurView = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    }
+    return _blurView;
 }
 
 - (GNRActionSheetConfig *)config{
