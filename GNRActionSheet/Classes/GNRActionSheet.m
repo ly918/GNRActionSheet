@@ -7,9 +7,9 @@
 
 #import "GNRActionSheet.h"
 #import "GNRActionSheetCell.h"
-#import "UIView+GNRSafeArea.h"
 #import "GNRActionSheetConfig.h"
 #import <Masonry/Masonry.h>
+#import <GNRFoundation/UIView+GNRSafeArea.h>
 
 @interface GNRActionSheet ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,assign)CGFloat totalHeight;

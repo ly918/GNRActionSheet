@@ -7,7 +7,6 @@
 
 #import "GNRActionSheetConfig.h"
 
-
 @implementation GNRActionSheetConfig
 
 UIColor* ColorRGBA(CGFloat r,CGFloat g,CGFloat b,CGFloat a) {

@@ -360,11 +360,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GNRActionSheet_Example/Pods-GNRActionSheet_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GNRActionSheet/GNRActionSheet.framework",
+				"${BUILT_PRODUCTS_DIR}/GNRFoundation/GNRFoundation.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GNRActionSheet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GNRFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

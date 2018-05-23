@@ -55,4 +55,14 @@
 + (CGFloat)g_navigationBarHeight{
     return 44.f;
 }
+
+/**
+ 标签栏高度
+ 
+ @return 49.f
+ */
++ (CGFloat)g_tabBarHeight{
+    return 49.f;
+}
+
 @end

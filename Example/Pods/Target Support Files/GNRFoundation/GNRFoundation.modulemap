@@ -1,0 +1,6 @@
+framework module GNRFoundation {
+  umbrella header "GNRFoundation-umbrella.h"
+
+  export *
+  module * { export * }
+}
