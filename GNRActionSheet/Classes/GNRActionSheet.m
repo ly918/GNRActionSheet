@@ -7,7 +7,6 @@
 
 #import "GNRActionSheet.h"
 #import "GNRActionSheetCell.h"
-#import "GNRActionSheetConfig.h"
 #import <Masonry/Masonry.h>
 #import <GNRFoundation/UIView+GNRSafeArea.h>
 

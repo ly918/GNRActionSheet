@@ -10,8 +10,6 @@
 
 @interface GNRActionSheetConfig : NSObject
 
-UIColor* ColorRGBA(CGFloat r,CGFloat g,CGFloat b,CGFloat a);
-
 @property(nonatomic,assign)CGFloat rowHeight;
 @property(nonatomic,assign)CGFloat sectionHeight;
 
