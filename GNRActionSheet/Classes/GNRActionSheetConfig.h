@@ -17,4 +17,7 @@
 @property(nonatomic,strong)UIColor *cancelTitleColor;
 @property(nonatomic,strong)UIColor *separatorColor;
 
+@property(nonatomic,strong)UIColor *cancelBackgroundColor;
+@property(nonatomic,strong)UIColor *defaultBackgroundColor;
+
 @end

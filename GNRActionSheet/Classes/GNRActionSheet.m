@@ -10,14 +10,37 @@
 #import <Masonry/Masonry.h>
 #import <GNRFoundation/UIView+GNRSafeArea.h>
 
+@interface UIView (LSCore)
+
+#pragma mark - 设置部分圆角
+/**
+ *  设置部分圆角(绝对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+withRadii:(CGSize)radii;
+/**
+ *  设置部分圆角(相对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ *  @param rect    需要设置的圆角view的rect
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+withRadii:(CGSize)radii
+viewRect:(CGRect)rect;
+
+@end
+
 @interface GNRActionSheet ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,assign)CGFloat totalHeight;
+@property (nonatomic,assign)CGFloat contentTotalHeight;
 @property (nonatomic,copy)GNRActionSheetActionBlock actionBlock;
 @property (nonatomic,copy)GNRActionSheetCancelBlock cancelBlock;
 
 @property (nonatomic,strong)UIButton *tapBtn;
 @property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic, strong)UIVisualEffectView *blurView;
 @property (nonatomic,strong)NSMutableArray *actionTitles;
 @property (nonatomic,strong)NSString *cancelTitle;
 
@@ -75,26 +98,28 @@
 }
 
 - (void)installUI{
-    _totalHeight = (self.config.rowHeight*(self.actionTitles.count+1))+(self.actionTitles.count?self.config.sectionHeight:0.f)+[UIView g_safeBottomMargin];
+    _contentTotalHeight = (self.config.rowHeight*(self.actionTitles.count+1))+(self.actionTitles.count?self.config.sectionHeight:0.f)+[UIView g_safeBottomMargin];
+    
     self.view.backgroundColor = [UIColor clearColor];
     self.tapBtn.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-    self.tableView.backgroundView = self.blurView;
 
     [self.view addSubview:self.tapBtn];
     [self.view addSubview:self.tableView];
     
     [self.tapBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
-        make.bottom.equalTo(self.tableView.mas_top);
+        make.left.top.right.bottom.equalTo(self.view);
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@(self.totalHeight));
+        make.height.equalTo(@(self.contentTotalHeight));
         make.left.right.equalTo(@0);
-        make.bottom.equalTo(@(self.totalHeight));
+        make.bottom.equalTo(@(self.contentTotalHeight));
     }];
+    
     [self.view layoutIfNeeded];
-    self.tableView.scrollEnabled = self.totalHeight>CGRectGetHeight(self.view.bounds)*0.8;
+    
+    self.tableView.scrollEnabled = self.contentTotalHeight>CGRectGetHeight(self.view.bounds)*0.8;
+    [self.tableView addRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight withRadii:CGSizeMake(6.0, 6.0) viewRect:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), self.contentTotalHeight)];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -120,7 +145,7 @@
 
 - (void)dismissAnimationCompletion:(void (^)(void))completion{
     [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(@(self.totalHeight));
+        make.bottom.equalTo(@(self.contentTotalHeight));
     }];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.tapBtn.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
@@ -158,6 +183,7 @@
                   @"color":color,
                   @"height":@(self.config.rowHeight),
                   };
+    cell.backgroundColor = indexPath.section == 1?self.config.cancelBackgroundColor:self.config.defaultBackgroundColor;
     return cell;
 }
 
@@ -208,6 +234,7 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorColor = self.config.separatorColor;
+        _tableView.layer.masksToBounds = YES;
         UIEdgeInsets inset = _tableView.separatorInset;
         inset.left = 0;
         _tableView.separatorInset = inset;
@@ -224,13 +251,6 @@
     return _tapBtn;
 }
 
-- (UIVisualEffectView *)blurView{
-    if (!_blurView) {
-        _blurView = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-    }
-    return _blurView;
-}
-
 - (GNRActionSheetConfig *)config{
     if (!_config) {
         _config = [[GNRActionSheetConfig alloc]init];
@@ -243,4 +263,40 @@
 }
 
 
+@end
+
+@implementation UIView (LSCore)
+#pragma mark - 设置部分圆角
+/**
+ *  设置部分圆角(绝对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+                withRadii:(CGSize)radii {
+    
+    UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:radii];
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    [shape setPath:rounded.CGPath];
+    
+    self.layer.mask = shape;
+}
+
+/**
+ *  设置部分圆角(相对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ *  @param rect    需要设置的圆角view的rect
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+                withRadii:(CGSize)radii
+                 viewRect:(CGRect)rect {
+    
+    UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:radii];
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    [shape setPath:rounded.CGPath];
+    self.layer.mask = shape;
+}
 @end

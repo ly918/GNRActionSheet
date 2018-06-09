@@ -7,6 +7,7 @@
 
 #import "GNRActionSheetCell.h"
 #import <Masonry/Masonry.h>
+
 @interface GNRActionSheetCell()
 @property (nonatomic, strong)UILabel *titleL;
 @end
@@ -18,10 +19,6 @@
         _titleL = [[UILabel alloc]init];
         _titleL.textAlignment = NSTextAlignmentCenter;
         _titleL.font = [UIFont systemFontOfSize:17];
-        
-        self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
-        self.contentView.backgroundColor = [UIColor clearColor];
-        
         [self.contentView addSubview:_titleL];
         [_titleL mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self);
