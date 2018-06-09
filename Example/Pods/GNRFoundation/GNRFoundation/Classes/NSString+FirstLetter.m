@@ -56,6 +56,7 @@
  *  @return 生成的富文本
  */
 + (NSMutableAttributedString *)t_changeCorlorWithColor:(UIColor *)color TotalString:(NSString *)totalStr SubStringArray:(NSArray *)subArray {
+    if (!totalStr) return nil;
     
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:totalStr];
     for (NSString *rangeStr in subArray) {
@@ -76,7 +77,8 @@
  *  @return 生成的富文本
  */
 + (NSMutableAttributedString *)t_changeSpaceWithTotalString:(NSString *)totalString Space:(CGFloat)space {
-    
+    if (!totalString) return nil;
+
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:totalString];
     long number = space;
     CFNumberRef num = CFNumberCreate(kCFAllocatorDefault,kCFNumberSInt8Type,&number);
@@ -95,7 +97,8 @@
  *  @return 生成的富文本
  */
 + (NSMutableAttributedString *)t_changeLineSpaceWithTotalString:(NSString *)totalString LineSpace:(CGFloat)lineSpace {
-    
+    if (!totalString) return nil;
+
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:totalString];
     
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -116,7 +119,8 @@
  *  @return 生成的富文本
  */
 + (NSMutableAttributedString *)t_changeLineAndTextSpaceWithTotalString:(NSString *)totalString LineSpace:(CGFloat)lineSpace textSpace:(CGFloat)textSpace {
-    
+    if (!totalString) return nil;
+
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:totalString];
     
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -143,7 +147,8 @@
  *  @return 生成的富文本
  */
 + (NSMutableAttributedString *)t_changeFontAndColor:(UIFont *)font Color:(UIColor *)color TotalString:(NSString *)totalString SubStringArray:(NSArray *)subArray{
-    
+    if (!totalString) return nil;
+
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:totalString];
     
     for (NSString *rangeStr in subArray) {

@@ -60,21 +60,55 @@
     return imageView;
 }
 
-- (void)showCornerRadius:(CGFloat)cornerRadius{
-    self.layer.cornerRadius = cornerRadius;
-    self.layer.masksToBounds = YES;
-}
 
+/**
+ 设置阴影
+
+ @param offset 阴影偏移量
+ @param opacity 阴影透明度
+ @param radius 阴影扩散范围
+ */
 - (void)addShadowOffset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius{
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.bounds];
     self.layer.shadowPath = shadowPath.CGPath;
-    self.clipsToBounds = NO;
-    self.layer.masksToBounds = NO;
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.layer.shadowOffset = offset;
     self.layer.shadowOpacity = opacity;
     self.layer.shadowRadius = radius;
 }
 
+#pragma mark - 设置部分圆角
+/**
+ *  设置部分圆角(绝对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+                radii:(CGSize)radii {
+    
+    UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:radii];
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    [shape setPath:rounded.CGPath];
+    
+    self.layer.mask = shape;
+}
+
+/**
+ *  设置部分圆角(相对布局)
+ *
+ *  @param corners 需要设置为圆角的角 UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight | UIRectCornerAllCorners
+ *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
+ *  @param rect    需要设置的圆角view的rect
+ */
+- (void)addRoundedCorners:(UIRectCorner)corners
+                radii:(CGSize)radii
+                 viewRect:(CGRect)rect {
+    
+    UIBezierPath* rounded = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:radii];
+    CAShapeLayer* shape = [[CAShapeLayer alloc] init];
+    [shape setPath:rounded.CGPath];
+    self.layer.mask = shape;
+}
 
 @end
