@@ -7,9 +7,11 @@
 
 #import "GNRActionSheetCell.h"
 #import <Masonry/Masonry.h>
+#import <GNRFoundation/UIColor+Hex.h>
 
 @interface GNRActionSheetCell()
 @property (nonatomic, strong)UILabel *titleL;
+@property (nonatomic, strong)UIView *selectedBgView;
 @end
 
 @implementation GNRActionSheetCell
@@ -35,6 +37,15 @@
     [self.titleL mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(data[@"height"]);
     }];
+    self.selectedBackgroundView = self.selectedBgView;
+}
+
+- (UIView *)selectedBgView{
+    if (!_selectedBgView) {
+        _selectedBgView = [[UIView alloc]init];
+        _selectedBgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    }
+    return _selectedBgView;
 }
 
 - (void)awakeFromNib {
@@ -46,6 +57,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
 }
 
 @end

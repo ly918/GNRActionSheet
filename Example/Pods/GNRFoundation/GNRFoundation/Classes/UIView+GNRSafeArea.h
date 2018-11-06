@@ -14,6 +14,7 @@
  */
 + (BOOL)isIPhoneX;
 
++ (BOOL)isIPhone320pt;
 
 /**
  底部边距

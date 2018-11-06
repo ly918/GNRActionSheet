@@ -13,10 +13,23 @@
  是否为iPhone X
  */
 + (BOOL)isIPhoneX{
+    return [UIView isIPhoneX_Height_812]||[UIView isIPhoneX_Height_896];
+}
+
++ (BOOL)isIPhoneX_Height_812{
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     return MAX(screenSize.width, screenSize.height) == 812.0;
 }
 
++ (BOOL)isIPhoneX_Height_896{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    return MAX(screenSize.width, screenSize.height) == 896.0;
+}
+
++ (BOOL)isIPhone320pt{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    return screenSize.width <= 320.0;
+}
 
 /**
  底部边距

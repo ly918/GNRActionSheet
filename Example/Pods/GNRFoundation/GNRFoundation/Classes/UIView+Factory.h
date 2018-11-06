@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
 @interface UIView (Factory)
-#pragma mark - 快捷生成组件
 
+#pragma mark - 控件 -
 + (MKMapView *)mapViewMK;
 
 + (UIButton *)buttonWithTitle:(NSString *)title
@@ -32,17 +31,48 @@
 
 + (UIImageView *)imageViewWithImage:(UIImage *)image;
 
-#pragma mark - 设置阴影
+#pragma mark - 阴影 -
 /**
- 设置阴影 需设置Bounds
+ 设置layer阴影:圆角
  
  @param offset 阴影偏移量
  @param opacity 阴影透明度
  @param radius 阴影扩散范围
  */
-- (void)addShadowOffset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius;
+- (void)setShadowOffset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius;
 
-#pragma mark - 设置部分圆角
+/**
+ 设置layer阴影:圆角
+ 
+ @param offset 阴影偏移量
+ @param opacity 阴影透明度
+ @param radius 阴影扩散范围
+ @param cornerRadius 圆角
+ */
+- (void)setShadowOffset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius cornerRadius:(CGFloat)cornerRadius;
+
+/**
+ 设置阴影:直角
+ 
+ @param offset 阴影偏移量
+ @param opacity 阴影透明度
+ @param radius 阴影扩散范围
+ */
+- (void)addShadowOffset:(CGSize)offset
+                opacity:(CGFloat)opacity
+                 radius:(CGFloat)radius;
+
+/**
+ 设置阴影:圆角
+ 
+ @param offset 阴影偏移量
+ @param opacity 阴影透明度
+ @param radius 阴影扩散范围
+ @param cornerRadius 圆角
+ */
+- (void)addShadowOffset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius cornerRadius:(CGFloat)cornerRadius;
+
+#pragma mark - 设置部分圆角 -
 /**
  *  设置部分圆角(绝对布局)
  *
@@ -50,7 +80,7 @@
  *  @param radii   需要设置的圆角大小 例如 CGSizeMake(20.0f, 20.0f)
  */
 - (void)addRoundedCorners:(UIRectCorner)corners
-                radii:(CGSize)radii;
+                    radii:(CGSize)radii;
 
 /**
  *  设置部分圆角(相对布局)
@@ -60,7 +90,6 @@
  *  @param rect    需要设置的圆角view的rect
  */
 - (void)addRoundedCorners:(UIRectCorner)corners
-                radii:(CGSize)radii
+                    radii:(CGSize)radii
                  viewRect:(CGRect)rect;
-
 @end

@@ -8,7 +8,7 @@
 
 #import "GNRViewController.h"
 #import <GNRActionSheet/GNRActionSheet.h>
-
+#import "GNRCustomView.h"
 @interface GNRViewController ()
 
 @end
@@ -32,12 +32,19 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    [GNRActionSheetConfig sharedConfig].cancelTitleColor = [UIColor redColor];
+//    GNRCustomView *customView=  [[GNRCustomView alloc]init];
+//    GNRActionSheet * sheet = [GNRActionSheet actionContentView:customView cancelTitle:@"取消" cancelBlock:^(GNRActionSheet *actionSheet) {
+//        
+//    }];
+//    [sheet showInViewController:self];
+//    
+//    return;
     GNRActionSheet *sheet = [GNRActionSheet actionTitles:@[@"男",@"女"] cancelTitle:@"取消" actionBlock:^(GNRActionSheet *actionSheet, NSInteger index) {
-        NSLog(@"index %d",index);
+        NSLog(@"index %ld",(long)index);
     } cancelBlock:^(GNRActionSheet *actionSheet) {
         NSLog(@"cancel");
     }];
-    sheet.config.cancelTitleColor = [UIColor redColor];
     [sheet showInViewController:self];
 }
 

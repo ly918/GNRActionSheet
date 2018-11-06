@@ -7,7 +7,7 @@ PODS:
   - GNRActionSheet (1.5):
     - GNRFoundation
     - Masonry
-  - GNRFoundation (0.2.5)
+  - GNRFoundation (0.3.0)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - GNRActionSheet (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - FBSnapshotTestCase
     - GNRFoundation
     - Masonry
@@ -27,9 +27,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   GNRActionSheet: 7cb5543ec5cf16873a7923f5ef6be2ff7aabda6f
-  GNRFoundation: d0cbb40d73ff877af51b7aaa85eff82f49b14fe4
+  GNRFoundation: eaa393b5dd22acd8aec4b3b2bce734f56e0e0674
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: 937817f1bd419c1ada857376a72d91ac264c5f16
 
-COCOAPODS: 1.5.0.beta.1
+COCOAPODS: 1.5.3

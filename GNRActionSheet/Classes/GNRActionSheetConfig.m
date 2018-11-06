@@ -10,15 +10,28 @@
 
 @implementation GNRActionSheetConfig
 
+static GNRActionSheetConfig* config = nil;
++ (instancetype)sharedConfig{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (nil == config) {
+            config = [[GNRActionSheetConfig alloc] init];
+        }
+    });
+    return config;
+}
+
 - (instancetype)init{
     if (self = [super init]) {
         _rowHeight = 60.f;
-        _sectionHeight = 0.f;
-        _defaultTitleColor = [UIColor colorWithR:51 g:51 b:51 a:1];
-        _cancelTitleColor = [UIColor colorWithR:113 g:144 b:249 a:1];
+        _lineHeight = 1.f;
+        _defaultTitleColor = [UIColor whiteColor];
+        _cancelTitleColor = [UIColor colorWithHexString:@"#496AD5"];
         _separatorColor = [UIColor clearColor];
-        _cancelBackgroundColor = [UIColor colorWithHexString:@"#F2F3F5" alpha:1];
-        _defaultBackgroundColor = [UIColor whiteColor];
+        _lineColor = [UIColor colorWithHexString:@"#515262" alpha:0.35];
+        _bgColor = [UIColor colorWithHexString:@"#404153" alpha:0.5];
+        _cancelBackgroundColor = [UIColor clearColor];
+        _defaultBackgroundColor = [UIColor clearColor];
     }
     return self;
 }

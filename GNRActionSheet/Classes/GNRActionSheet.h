@@ -15,8 +15,6 @@ typedef void(^GNRActionSheetCancelBlock)(GNRActionSheet *actionSheet);
 
 @interface GNRActionSheet : UIViewController
 
-@property(nonatomic, strong, readwrite)GNRActionSheetConfig *config;
-
 + (instancetype)actionTitles:(NSArray *)actionTitles
                          actionBlock:(GNRActionSheetActionBlock)actionBlock
                          cancelBlock:(GNRActionSheetCancelBlock)cancelBlock;
@@ -25,6 +23,10 @@ typedef void(^GNRActionSheetCancelBlock)(GNRActionSheet *actionSheet);
                          cancelTitle:(NSString *)cancelTitle
                          actionBlock:(GNRActionSheetActionBlock)actionBlock
                          cancelBlock:(GNRActionSheetCancelBlock)cancelBlock;
+
++ (instancetype)actionContentView:(UIView *)contentView
+                 cancelTitle:(NSString *)cancelTitle
+                 cancelBlock:(GNRActionSheetCancelBlock)cancelBlock;//自定义视图 遵循Autolayout
 
 - (void)showInViewController:(UIViewController *)viewController;
 
