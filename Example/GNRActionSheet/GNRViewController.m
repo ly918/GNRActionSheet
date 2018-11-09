@@ -32,20 +32,22 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+#if 1
 //    [GNRActionSheetConfig sharedConfig].cancelTitleColor = [UIColor redColor];
-//    GNRCustomView *customView=  [[GNRCustomView alloc]init];
-//    GNRActionSheet * sheet = [GNRActionSheet actionContentView:customView cancelTitle:@"取消" cancelBlock:^(GNRActionSheet *actionSheet) {
-//        
-//    }];
-//    [sheet showInViewController:self];
-//    
-//    return;
-    GNRActionSheet *sheet = [GNRActionSheet actionTitles:@[@"男",@"女"] cancelTitle:@"取消" actionBlock:^(GNRActionSheet *actionSheet, NSInteger index) {
+    GNRCustomView *customView=  [[GNRCustomView alloc]init];
+    GNRActionSheet * sheet = [GNRActionSheet actionContentView:customView cancelTitle:@"取消" cancelBlock:^(GNRActionSheet *actionSheet) {
+        
+    }];
+    [sheet showInViewController:self];
+    
+#else
+    GNRActionSheet *sheet = [GNRActionSheet actionTitles:@[@"男",@"女"] cancelTitle:nil actionBlock:^(GNRActionSheet *actionSheet, NSInteger index) {
         NSLog(@"index %ld",(long)index);
     } cancelBlock:^(GNRActionSheet *actionSheet) {
         NSLog(@"cancel");
     }];
     [sheet showInViewController:self];
+#endif
 }
 
 @end

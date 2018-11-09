@@ -116,12 +116,12 @@
         }];
         [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(@0);
-            make.height.equalTo(@([GNRActionSheetConfig sharedConfig].lineHeight));
+            make.height.equalTo(@(self.cancelTitle?[GNRActionSheetConfig sharedConfig].lineHeight:0));
             make.bottom.equalTo(self.cancelBtn.mas_top);
         }];
         [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(@0);
-            make.height.equalTo(@([GNRActionSheetConfig sharedConfig].rowHeight));
+            make.height.equalTo(@(self.cancelTitle?[GNRActionSheetConfig sharedConfig].rowHeight:0));
             make.bottom.equalTo(@(-[UIView g_safeBottomMargin]));
         }];
         [self.blurView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -133,7 +133,7 @@
     } else {
         [self.view addSubview:self.tableView];
 
-        _contentTotalHeight = ([GNRActionSheetConfig sharedConfig].rowHeight*(self.actionTitles.count+1))+(self.actionTitles.count?[GNRActionSheetConfig sharedConfig].lineHeight:0.f)+[UIView g_safeBottomMargin];
+        _contentTotalHeight = ([GNRActionSheetConfig sharedConfig].rowHeight*(self.actionTitles.count+(self.cancelTitle?1:0)))+(self.actionTitles.count?[GNRActionSheetConfig sharedConfig].lineHeight:0.f)+[UIView g_safeBottomMargin];
         
         [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(self.contentTotalHeight));
@@ -223,7 +223,7 @@
 
 //MARK: - TableView DataSource & Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return self.cancelTitle?2:1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -269,11 +269,16 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [GNRActionSheetConfig sharedConfig].rowHeight+(indexPath.section==1?[UIView g_safeBottomMargin]:0);
+    if (indexPath.section==0) {
+        return [GNRActionSheetConfig sharedConfig].rowHeight;
+    } else if (indexPath.section==1) {
+        return (self.cancelTitle?[GNRActionSheetConfig sharedConfig].rowHeight:0)+[UIView g_safeBottomMargin];
+    }
+    return CGFLOAT_MIN;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section==0 && self.actionTitles.count) {
+    if (section==0 && self.actionTitles.count && self.cancelTitle) {
         return [GNRActionSheetConfig sharedConfig].lineHeight;
     }
     return CGFLOAT_MIN;
@@ -311,6 +316,7 @@
 - (UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = [UIView buttonWithTitle:self.cancelTitle image:nil target:self action:@selector(cancelTapPressed:)];
+        [_cancelBtn setTitleColor:[GNRActionSheetConfig sharedConfig].cancelTitleColor forState:UIControlStateNormal];
     }
     return _cancelBtn;
 }
